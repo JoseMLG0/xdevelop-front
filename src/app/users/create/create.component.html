@@ -1,0 +1,139 @@
+<div class="modal-header">
+  <h4 class="modal-title">Creación de usuario</h4>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')"
+  ></button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="formularioUsuario" (ngSubmit)="submitForm()">
+    <div class="form-group mt-2">
+      <label for="nombre">Nombre:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="nombre"
+        formControlName="nombre"
+      />
+      <div
+        *ngIf="
+          formularioUsuario.get('nombre')?.invalid &&
+          (formularioUsuario.get('nombre')?.dirty ||
+            formularioUsuario.get('nombre')?.touched)
+        "
+        class="text-danger mt-1"
+      >
+        El nombre es requerido.
+      </div>
+    </div>
+    <div class="form-group mt-2">
+      <label for="apellido">Apellido:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="apellido"
+        formControlName="apellido"
+      />
+      <div
+        *ngIf="
+          formularioUsuario.get('apellido')?.invalid &&
+          (formularioUsuario.get('apellido')?.dirty ||
+            formularioUsuario.get('apellido')?.touched)
+        "
+        class="text-danger mt-1"
+      >
+        El apellido es requerido
+      </div>
+    </div>
+    <div class="form-group mt-2">
+      <label for="correo">Correo:</label>
+      <input
+        type="email"
+        class="form-control"
+        id="correo"
+        formControlName="correo"
+      />
+      <div
+        *ngIf="
+          formularioUsuario.get('correo')?.invalid &&
+          (formularioUsuario.get('correo')?.dirty ||
+            formularioUsuario.get('correo')?.touched)
+        "
+        class="text-danger mt-1"
+      >
+        El correo es requerido.
+      </div>
+    </div>
+    <div class="form-group mt-2">
+      <label for="contrasena">Contraseña:</label>
+      <input
+        type="password"
+        class="form-control"
+        id="contrasena"
+        autocomplete="new-password"
+        formControlName="contrasena"
+      />
+      <div
+        *ngIf="
+          formularioUsuario.get('contrasena')?.invalid &&
+          (formularioUsuario.get('contrasena')?.dirty ||
+            formularioUsuario.get('contrasena')?.touched)
+        "
+        class="text-danger mt-1"
+      >
+        La contraseña es requerida.
+      </div>
+    </div>
+    <div class="form-group mt-2">
+      <label for="imagen">Imagen de Perfil:</label>
+      <input
+        #imagen
+        type="file"
+        class="form-control"
+        id="imagen"
+        (change)="onChange($event)"
+      />
+    </div>
+    <div class="text-center">
+      <img
+        [src]="imagenData"
+        class="rounded mt-4 mb-2 img-fluid"
+        style="width: 250px"
+      /><br />
+      <button
+        type="button"
+        class="btn btn-danger"
+        (click)="quitarImagen()"
+        *ngIf="!!formularioUsuario.get('imagenPerfil')?.value"
+      >
+        Quitar imagen
+      </button>
+    </div>
+    <button
+      #submitFormBtn
+      hidden
+      type="submit"
+      class="btn btn-primary btn-block"
+    >
+      Registrar
+    </button>
+  </form>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-success ms-2"
+    (click)="submitFormBtn.click()"
+  >
+    Guardar
+  </button>
+  <button
+    type="button"
+    class="btn btn-danger ms-2"
+    (click)="activeModal.close(false)"
+  >
+    Cerrar
+  </button>
+</div>

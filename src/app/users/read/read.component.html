@@ -1,0 +1,55 @@
+<div class="card">
+  <div class="card-header text-bg-primary">
+    Usarios <small class="float-end">Catalogo</small>
+  </div>
+  <div class="card-body">
+    <h3 class="card-title mb-2">Usuarios registrados</h3>
+    <button
+      class="btn btn-primary btn-sm mb-2 ms-2 float-end"
+      (click)="addUser()"
+    >
+      <i class="fa-solid fa-plus"></i> Agregar usuario
+    </button>
+    <table class="table table-striped text-center">
+      <thead class="table-primary">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Correo</th>
+          <th scope="col">Accion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let user of users; let i = index">
+          <tr>
+            <th scope="row">{{ user.id }}</th>
+            <td>
+              <img
+                [src]="user.picture"
+                (error)="mostrarImagenDefecto(user)"
+                class="me-2 rounded"
+                style="width: 25px"
+              />
+              {{ user.name }} {{ user.lastname }}
+            </td>
+            <td>{{ user.email }}</td>
+            <td>
+              <div
+                class="btn-group"
+                role="group"
+                aria-label="Basic mixed styles example"
+              >
+                <button type="button" class="btn btn-secondary btn-sm" (click)="updateUser(user)">
+                  <i class="fa-solid fa-pen-to-square"></i>
+                </button>
+                <button type="button" class="btn btn-danger btn-sm" (click)="deleteUser(user)">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>
