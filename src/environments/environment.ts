@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  userApi: 'http://localhost:4020/api/users/',
-  picturesProfile: 'http://localhost:4020/profilesF/'
+  userApi: 'http://134.122.124.88:4020/api/users/',
+  picturesProfile: 'http://134.122.124.88:4020/profilesF/'
 };
 
 /*
